@@ -1,33 +1,37 @@
-# ZyloApp - Backend Java Spring Boot
+# ZyloApp - Backend Java 
+
+
+API REST desenvolvida em Java com Spring Boot, autenticação JWT, integração com dados climáticos e documentação via Swagger/OpenAPI.
+
+---
 
 ## 🔧 Tecnologias Utilizadas
 
-- Java 17+
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Spring Security (JWT)
-- Spring Validation
-- Swagger/OpenAPI 3
-- Lombok
-- Banco de Dados: Oracle
-- Maven
+- ☕ Java 17+
+- 🚀 Spring Boot
+- 🌐 Spring Web
+- 🗃️ Spring Data JPA
+- 🔒 Spring Security (JWT)
+- ✅ Bean Validation
+- 📘 Swagger/OpenAPI 3
+- 🧬 Lombok
+- 🛢️ Banco de Dados Oracle
+- 📦 Maven
 
 ---
 
 ## 🔐 Funcionalidades
 
-- Cadastro de usuário (`POST /api/auth/register`)
-- Login com JWT (`POST /api/auth/login`)
-- Listagem de usuários (`GET /api/usuarios`)
-- Buscar usuário por ID (`GET /api/usuarios/{id}`)
-- Atualizar dados do usuário (`PUT /api/usuarios/{id}`)
-- Deletar usuário (`DELETE /api/usuarios/{id}`)
-- Documentação via Swagger
+- Registro de usuários com validação
+- Login com JWT
+- Listagem, edição e remoção de usuários
+- Recebimento de dados climáticos da aplicação mobile
+- Integração com front-end via token JWT
+- Swagger para documentação interativa
 
 ---
 
-## 🚀 Como executar localmente
+## 🚀 Como Executar Localmente
 
 ### 1. Clone o repositório
 
@@ -36,16 +40,21 @@ git clone https://github.com/ucarols/ZyloApp---JavaGS.git
 cd ZyloApp---JavaGS
 ```
 
-### 2. Configure o banco de dados Oracle no arquivo:
+### 2. Configure o banco de dados Oracle
 
-`src/main/resources/application.properties`
-
-Exemplo:
+Edite o arquivo `src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
 spring.datasource.username=rm559123
 spring.datasource.password=fiap
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect
+
+springdoc.api-docs.path=/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
 ```
 
 ### 3. Compile e execute o projeto
@@ -56,53 +65,66 @@ spring.datasource.password=fiap
 
 ---
 
-## 🔑 Endpoints Principais
+## 🔑 Principais Endpoints
 
-### Autenticação
+### 🔐 Autenticação
 
 | Método | Rota               | Descrição                |
 |--------|--------------------|--------------------------|
-| POST   | /api/auth/register | Cadastro de novo usuário |
-| POST   | /api/auth/login    | Login e retorno do token |
+| POST   | `/api/auth/register` | Cadastro de novo usuário |
+| POST   | `/api/auth/login`    | Login com retorno do JWT |
 
-### Usuários
+### 👤 Usuários
 
-| Método | Rota                | Descrição                |
-|--------|---------------------|--------------------------|
-| GET    | /api/usuarios       | Listagem com paginação   |
-| GET    | /api/usuarios/{id}  | Buscar usuário por ID    |
-| PUT    | /api/usuarios/{id}  | Atualizar dados          |
-| DELETE | /api/usuarios/{id}  | Deletar usuário          |
+| Método | Rota                | Descrição                  |
+|--------|---------------------|----------------------------|
+| GET    | `/api/usuarios`       | Listagem com paginação     |
+| GET    | `/api/usuarios/{id}`  | Buscar por ID              |
+| PUT    | `/api/usuarios/{id}`  | Atualizar dados do usuário |
+| DELETE | `/api/usuarios/{id}`  | Remover usuário            |
 
----
+### 🌦️ Clima
 
-## 📑 Documentação Swagger
-
-Após iniciar o projeto, acesse no navegador:
-
-- http://localhost:8080/swagger-ui/index.html
+| Método | Rota         | Descrição                        |
+|--------|--------------|----------------------------------|
+| POST   | `/api/clima` | Receber dados do app sobre clima |
 
 ---
 
-## 📂 Estrutura de Pastas
+## 📑 Swagger
 
-```bash
+📚 Acesse a documentação interativa em:
+
+```
+http://localhost:8080/swagger-ui.html
+```
+
+---
+
+## 📂 Estrutura do Projeto
+
+```
 com.zyloapp
-├── config         # Configurações do Swagger
+├── config         # Swagger e configs extras
 ├── controller     # Endpoints REST
-├── dto            # Objetos de transferência de dados
+├── dto            # Objetos de transporte de dados
 ├── model          # Entidades JPA
-├── repository     # Interfaces de repositório
-├── security       # JWT, filtros e configuração
+├── repository     # Camada de acesso a dados
+├── security       # JWT, filtros, configurações
 ├── service        # Regras de negócio
+├── util           # Utilitários gerais
+├── exceptions     # Tratamento de erros
 ```
 
 ---
 
-## 🔒 Segurança
+## 🔒 Segurança JWT
 
-As rotas `/api/auth/**` são públicas.  
-As demais exigem token JWT no header da requisição:
+As rotas públicas são:
+
+- `/api/auth/**`
+
+Todas as demais exigem o token JWT:
 
 ```http
 Authorization: Bearer <seu_token>
@@ -110,21 +132,30 @@ Authorization: Bearer <seu_token>
 
 ---
 
-## 🧪 Testando com Insomnia ou Postman
+## 🧪 Testando com Insomnia/Postman
 
-1. Realize um `POST` em `/api/auth/login` com email e senha válidos.
-2. Copie o token JWT retornado.
-3. Em outras requisições, adicione o header:
+1. Faça login (`POST /api/auth/login`)
+2. Copie o token JWT retornado
+3. Em outras requisições, envie no header:
 
 ```http
 Authorization: Bearer <seu_token>
 ```
-## Link Youtube
-........
 
+---
+
+## 📽️ Demonstração
+
+📺 Link para o vídeo no YouTube:  
+**[Video](https://www.youtube.com/watch?v=t5PT38Et8dI)**
+
+---
 
 ## 👥 Integrantes
 
-- Caroline de Oliveira - RM 559123
-- Giulia Correa Camillo - RM 554473
-- João Pedro Cancian Corrêa RM : 555341
+- 👩‍💻 Caroline de Oliveira - RM 559123
+- 👩‍💻 Giulia Correa Camillo - RM 554473
+- 👨‍💻 João Pedro Cancian Corrêa - RM 555341
+
+---
+

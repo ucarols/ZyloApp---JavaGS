@@ -9,45 +9,68 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Long id;
+    private Long idUsuario;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String senha;
 
     @Column(name = "localizacao_usuario")
-    private String cidade;
+    private String localizacaoUsuario;
 
-    public Usuario() {}
+    public Usuario() {
+    }
 
-    public Usuario(Long id, String nome, String email, String senha, String cidade) {
-        this.id = id;
+    public Usuario(Long idUsuario, String nome, String email, String senha, String localizacaoUsuario) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.cidade = cidade;
+        this.localizacaoUsuario = localizacaoUsuario;
     }
 
-    // Getters e setters
-    public Long getId() { return id; }
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-    public String getNome() { return nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getSenha() { return senha; }
+    public String getSenha() {
+        return senha;
+    }
 
-    public void setSenha(String senha) { this.senha = senha; }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-    public String getCidade() { return cidade; }
+    public String getLocalizacaoUsuario() {
+        return localizacaoUsuario;
+    }
 
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public void setLocalizacaoUsuario(String localizacaoUsuario) {
+        this.localizacaoUsuario = localizacaoUsuario;
+    }
 }

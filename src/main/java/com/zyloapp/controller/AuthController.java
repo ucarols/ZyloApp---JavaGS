@@ -3,9 +3,11 @@ package com.zyloapp.controller;
 import com.zyloapp.dto.LoginRequest;
 import com.zyloapp.dto.LoginResponse;
 import com.zyloapp.dto.UsuarioRequestDTO;
+import com.zyloapp.dto.UsuarioResponseDTO;
+import com.zyloapp.mapper.UsuarioMapper;
 import com.zyloapp.model.Usuario;
-import com.zyloapp.util.JwtUtil;
 import com.zyloapp.service.UsuarioService;
+import com.zyloapp.util.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -36,7 +38,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(summary = "Registra um novo usuário")
-    public Usuario register(@Valid @RequestBody UsuarioRequestDTO dto) {
+    public UsuarioResponseDTO register(@Valid @RequestBody UsuarioRequestDTO dto) {
         return usuarioService.cadastrar(dto);
     }
 }

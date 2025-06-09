@@ -1,25 +1,52 @@
 package com.zyloapp.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UsuarioRequestDTO {
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
+    @Email
     private String email;
+
+    @NotBlank
     private String senha;
-    private String cidade;
 
-    public String getNome() { return nome; }
+    @NotBlank
+    private String localizacaoUsuario;
 
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public String getEmail() { return email; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getSenha() { return senha; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public void setSenha(String senha) { this.senha = senha; }
+    public String getSenha() {
+        return senha;
+    }
 
-    public String getCidade() { return cidade; }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public String getLocalizacaoUsuario() {
+        return localizacaoUsuario;
+    }
+
+    public void setLocalizacaoUsuario(String localizacaoUsuario) {
+        this.localizacaoUsuario = localizacaoUsuario;
+    }
 }

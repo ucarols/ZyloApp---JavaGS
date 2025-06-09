@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.security.Key;
 
@@ -29,7 +30,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String extrairEmail(String token) {
+    public String extractUsername(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
@@ -39,7 +40,7 @@ public class JwtUtil {
     }
 
     public boolean validarToken(String token, String email) {
-        return email.equals(extrairEmail(token)) && !isTokenExpirado(token);
+        return email.equals(extractUsername(token)) && !isTokenExpirado(token);
     }
 
     private boolean isTokenExpirado(String token) {
