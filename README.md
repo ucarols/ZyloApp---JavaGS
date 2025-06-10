@@ -147,7 +147,7 @@ Authorization: Bearer <seu_token>
 ## 📽️ Demonstração
 
 📺 Link para o vídeo no YouTube:  
-**[Video](https://www.youtube.com/watch?v=t5PT38Et8dI)**
+**[Video](https://youtu.be/NiYmRSZYkEs?si=dZLkhzaBkP8UPZWe)**
 
 ---
 
